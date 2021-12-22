@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import model.entities.Account;
-import model.exceptions.DomainException;
+import model.exceptions.BusinessException;
 
 public class Program {
 
@@ -24,15 +24,16 @@ public class Program {
 			double initialBalance = sc.nextDouble();
 			System.out.print("Withdraw limit: ");
 			double withdrawLimit = sc.nextDouble();
-			
+
 			Account acc = new Account(number, holder, initialBalance, withdrawLimit);
-			
+
 			System.out.println();
 			System.out.print("Enter amount for withdraw: ");
 			double withdraw = sc.nextDouble();
+
 			acc.withdraw(withdraw);
 			System.out.println("New balance: " + String.format("%.2f", acc.getBalance()));
-		} catch (DomainException e) {
+		} catch (BusinessException e) {
 			System.out.println("Withdraw error: " + e.getMessage());
 		} catch (RuntimeException e) {
 			System.out.println("Unexpected error");
